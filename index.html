@@ -6,11 +6,11 @@
     <title>Weather App</title>
   </head>
   <body
-    class="h-screen bg-gradient-to-b from-violet-800 via-violet-900 via-30% to-black to-90%"
+    class="h-screen bg-gradient-to-b from-violet-800 via-violet-900 via-30% to-black to-80%"
   >
     <script type="module" src="src/main.js"></script>
 
-    <div class="mx-auto w-fit pt-10">
+    <div class="mx-auto mb-14 w-fit pt-10">
       <label for="search"></label
       ><input
         id="search"
@@ -20,5 +20,20 @@
         class="h-10 w-72 rounded-3xl bg-violet-950 pl-4 text-lg text-white"
       />
     </div>
+
+    <main class="p-5">
+      <div class="mx-auto flex w-fit flex-col">
+        <h1 id="city" class="mx-auto text-2xl text-white"></h1>
+        <div id="temp" class="mx-auto w-fit text-2xl text-white"></div>
+        <div class="flex items-center justify-center">
+          <img id="conditionIcon" src="" alt="" class="mr-2 h-10" />
+          <div id="condition" class="text-white"></div>
+        </div>
+        <div class="flex justify-center">
+          <div id="high" class="mr-4 text-white"></div>
+          <div id="low" class="text-white"></div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

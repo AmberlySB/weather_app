@@ -10,7 +10,11 @@ const low = document.getElementById("low");
 
 const updateDom = (data) => {
   console.log(data);
-  city.textContent = `${data.location.name}`;
+  if (data.location.country === "United States of America") {
+    city.textContent = `${data.location.name}, ${data.location.region}`;
+  } else {
+    city.textContent = `${data.location.name}, ${data.location.country}`;
+  }
   temp.textContent = `${data.current.temp_f}°`;
   high.textContent = `H: ${data.forecast.forecastday[0].day.maxtemp_f}°`;
   low.textContent = `L: ${data.forecast.forecastday[0].day.mintemp_f}°`;

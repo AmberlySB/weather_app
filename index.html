@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body
-    class="h-screen bg-gradient-to-b from-violet-800 via-violet-900 via-30% to-black to-80%"
-  >
+  <body class="h-screen bg-gradient-to-b from-violet-700 to-violet-950 to-60%">
     <script type="module" src="src/main.js"></script>
 
     <div class="mx-auto mb-14 w-fit pt-10">
@@ -21,10 +19,11 @@
       />
     </div>
 
-    <main class="p-5">
-      <div class="mx-auto flex w-fit flex-col">
-        <h1 id="city" class="mx-auto text-2xl text-white"></h1>
-        <div id="temp" class="mx-auto w-fit text-2xl text-white"></div>
+    <main class="flex flex-col p-5">
+      <div id="locationWrapper" class="mb-10 flex w-fit flex-col self-center">
+        <h1 id="city" class="mb-1 self-center text-3xl text-white"></h1>
+        <div id="date" class="mb-1 self-center text-white"></div>
+        <div id="temp" class="mb-1 w-fit self-center text-2xl text-white"></div>
         <div class="flex items-center justify-center">
           <img id="conditionIcon" src="" alt="" class="mr-2 h-12" />
           <div id="condition" class="text-white"></div>
@@ -32,6 +31,60 @@
         <div class="flex justify-center">
           <div id="high" class="mr-4 text-white"></div>
           <div id="low" class="text-white"></div>
+        </div>
+      </div>
+
+      <div
+        id="infoWrapper"
+        class="grid w-fit grid-cols-3 grid-rows-3 place-items-center gap-8 self-center"
+      >
+        <div class="flex flex-col">
+          <p class="mb-2 text-white">Air Quality</p>
+          <div
+            id="airQuality"
+            class="h-6 w-6 self-center text-center text-white"
+          ></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 text-white">UV Index</p>
+          <div
+            id="uvIndex"
+            class="h-6 w-6 self-center text-center text-white"
+          ></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 text-white">Precipitation: rain | snow</p>
+          <div
+            id="precipitation"
+            class="self-center text-center text-white"
+          ></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 self-center text-white">Wind</p>
+          <div id="wind" class="self-center text-center text-white"></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 text-white">Humidity</p>
+          <div id="humidity" class="self-center text-center text-white"></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 text-white">Precipitation Expected</p>
+          <div
+            id="precipitationExpected"
+            class="self-center text-center text-white"
+          ></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 self-center text-white">Sunrise</p>
+          <div id="sunrise" class="self-center text-center text-white"></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 self-center text-white">Sunset</p>
+          <div id="sunset" class="self-center text-center text-white"></div>
+        </div>
+        <div class="flex flex-col">
+          <p class="mb-2 self-center text-white">Moon Phase</p>
+          <div id="moonPhase" class="self-center text-center text-white"></div>
         </div>
       </div>
     </main>

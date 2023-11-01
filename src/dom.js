@@ -33,8 +33,6 @@ const degreeBtn = document.getElementById("degreeBtn");
 let degreeType = "fahrenheit";
 
 const updateDom = (data) => {
-  console.log(data);
-
   // Todays Weather
 
   if (data.location.country === "United States of America") {
@@ -43,7 +41,6 @@ const updateDom = (data) => {
     city.textContent = `${data.location.name}, ${data.location.country}`;
   }
   const thisDate = new Date(data.location.localtime);
-  console.log(thisDate, isDate(thisDate));
   if (isDate(thisDate)) {
     date.textContent = `${format(thisDate, "EEEE MMMM d y | h:mm a")}`;
   }
@@ -123,8 +120,6 @@ const updateDom = (data) => {
 
   const weekDayOne = new Date(data.forecast.forecastday[1].date.split("-"));
   const weekDayTwo = new Date(data.forecast.forecastday[2].date.split("-"));
-  console.log(data.forecast.forecastday[1].date);
-  console.log(weekDayOne);
 
   // Day one
 
@@ -197,14 +192,17 @@ const setDegreeType = () => {
       .then((locationData) => updateDom(locationData))
       .catch((err) => console.error(err));
   } else {
-    getWeather().then((locationData) => updateDom(locationData));
+    getWeather()
+      .then((locationData) => updateDom(locationData))
+      .catch((err) => console.error(err));
   }
-  console.log(degreeType);
 };
 
 degreeBtn.addEventListener("click", setDegreeType);
 
-getWeather().then((locationData) => updateDom(locationData));
+getWeather()
+  .then((locationData) => updateDom(locationData))
+  .catch((err) => console.error(err));
 
 search.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {

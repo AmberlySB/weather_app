@@ -11,21 +11,33 @@
   >
     <script type="module" src="src/main.js"></script>
 
-    <div class="mx-auto mb-14 w-fit pt-10">
-      <label for="search"></label
-      ><input
-        id="search"
-        name="search"
-        placeholder="Search Location"
-        type="text"
-        class="h-10 w-72 rounded-3xl bg-violet-950 pl-4 text-lg text-white"
-      />
-    </div>
+    <header class="mb-12 flex flex-col pt-4 text-white md:pt-12">
+      <div class="flex justify-end">
+        <label for="degreeBtn"></label>
+        <button
+          id="degreeBtn"
+          name="degreeBtn"
+          class="mb-4 mr-4 h-10 w-16 rounded-3xl bg-violet-950 md:mr-12"
+        >
+          °C
+        </button>
+      </div>
+      <div class="mx-auto w-fit">
+        <label for="search"></label
+        ><input
+          id="search"
+          name="search"
+          placeholder="Search Location"
+          type="text"
+          class="h-10 w-72 rounded-3xl bg-violet-950 pl-4 text-lg"
+        />
+      </div>
+    </header>
 
     <main class="mb-10 flex flex-col p-5 md:mb-0">
       <div id="locationWrapper" class="mb-10 flex w-fit flex-col self-center">
-        <h1 id="city" class="mb-1 self-center text-3xl text-white"></h1>
-        <div id="date" class="mb-1 self-center text-white"></div>
+        <h1 id="city" class="mb-2 self-center text-2xl text-white"></h1>
+        <div id="date" class="mb-2 self-center text-white"></div>
         <div id="temp" class="mb-1 w-fit self-center text-2xl text-white"></div>
         <div class="flex items-center justify-center">
           <img id="conditionIcon" src="" alt="" class="mr-2 h-12" />
@@ -98,7 +110,7 @@
 
     <section id="forecast" class="mb-12 mt-auto flex justify-center p-4">
       <div id="dayOneWrapper" class="flex flex-col border-r pr-8 text-white">
-        <div id="dayOne" class="mb-1 self-center"></div>
+        <div id="dayOne" class="mb-2 self-center"></div>
         <div class="flex self-center">
           <div id="dayOneHigh" class="mr-4"></div>
           <div id="dayOneLow" class=""></div>
@@ -109,7 +121,7 @@
         </div>
       </div>
       <div id="dayTwoWrapper" class="flex flex-col pl-8 text-white">
-        <div id="dayTwo" class="mb-1 self-center"></div>
+        <div id="dayTwo" class="mb-2 self-center"></div>
         <div class="flex self-center">
           <div id="dayTwoHigh" class="mr-4"></div>
           <div id="dayTwoLow" class=""></div>

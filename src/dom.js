@@ -28,6 +28,9 @@ const dayTwoHigh = document.getElementById("dayTwoHigh");
 const dayTwoLow = document.getElementById("dayTwoLow");
 const dayTwoIcon = document.getElementById("dayTwoIcon");
 const dayTwoCondition = document.getElementById("dayTwoCondition");
+const degreeBtn = document.getElementById("degreeBtn");
+
+let degreeType = "fahrenheit";
 
 const updateDom = (data) => {
   console.log(data);
@@ -44,15 +47,27 @@ const updateDom = (data) => {
   if (isDate(thisDate)) {
     date.textContent = `${format(thisDate, "EEEE MMMM d y | h:mm a")}`;
   }
-  temp.textContent = `Actual: ${Math.round(
-    data.current.temp_f,
-  )}° \u00A0 Feels like: ${Math.round(data.current.feelslike_f)}°`;
-  high.textContent = `H: ${Math.round(
-    data.forecast.forecastday[0].day.maxtemp_f,
-  )}°`;
-  low.textContent = `L: ${Math.round(
-    data.forecast.forecastday[0].day.mintemp_f,
-  )}°`;
+  if (degreeType === "fahrenheit") {
+    temp.textContent = `Actual: ${Math.round(
+      data.current.temp_f,
+    )}° \u00A0 Feels like: ${Math.round(data.current.feelslike_f)}°`;
+    high.textContent = `H: ${Math.round(
+      data.forecast.forecastday[0].day.maxtemp_f,
+    )}°`;
+    low.textContent = `L: ${Math.round(
+      data.forecast.forecastday[0].day.mintemp_f,
+    )}°`;
+  } else {
+    temp.textContent = `Actual: ${Math.round(
+      data.current.temp_c,
+    )}° \u00A0 Feels like: ${Math.round(data.current.feelslike_c)}°`;
+    high.textContent = `H: ${Math.round(
+      data.forecast.forecastday[0].day.maxtemp_c,
+    )}°`;
+    low.textContent = `L: ${Math.round(
+      data.forecast.forecastday[0].day.mintemp_c,
+    )}°`;
+  }
   conditionIcon.setAttribute("src", `${data.current.condition.icon}`);
   conditionIcon.setAttribute("alt", `${data.current.condition.text}`);
   condition.textContent = `${data.current.condition.text}`;
@@ -89,9 +104,17 @@ const updateDom = (data) => {
   }
   uvIndex.textContent = `${data.current.uv}`;
   precipitation.textContent = `${data.forecast.forecastday[0].day.daily_chance_of_rain}% \u00A0 | \u00A0 ${data.forecast.forecastday[0].day.daily_chance_of_snow}%`;
-  wind.textContent = `${data.current.wind_dir} at ${data.current.wind_mph} mph`;
+  if (degreeType === "fahrenheit") {
+    wind.textContent = `${data.current.wind_dir} at ${data.current.wind_mph} mph`;
+  } else {
+    wind.textContent = `${data.current.wind_dir} at ${data.current.wind_kph} kph`;
+  }
   humidity.textContent = `${data.current.humidity}%`;
-  precipitationExpected.textContent = `${data.forecast.forecastday[0].day.totalprecip_in} in`;
+  if (degreeType === "fahrenheit") {
+    precipitationExpected.textContent = `${data.forecast.forecastday[0].day.totalprecip_in} in`;
+  } else {
+    precipitationExpected.textContent = `${data.forecast.forecastday[0].day.totalprecip_mm} mm`;
+  }
   sunrise.textContent = `${data.forecast.forecastday[0].astro.sunrise}`;
   sunset.textContent = `${data.forecast.forecastday[0].astro.sunset}`;
   moonPhase.textContent = `${data.forecast.forecastday[0].astro.moon_phase}`;
@@ -106,12 +129,21 @@ const updateDom = (data) => {
   // Day one
 
   dayOne.textContent = `${format(weekDayOne, "EEEE")}`;
-  dayOneHigh.textContent = `H: ${Math.round(
-    data.forecast.forecastday[1].day.maxtemp_f,
-  )}°`;
-  dayOneLow.textContent = `L: ${Math.round(
-    data.forecast.forecastday[1].day.mintemp_f,
-  )}°`;
+  if (degreeType === "fahrenheit") {
+    dayOneHigh.textContent = `H: ${Math.round(
+      data.forecast.forecastday[1].day.maxtemp_f,
+    )}°`;
+    dayOneLow.textContent = `L: ${Math.round(
+      data.forecast.forecastday[1].day.mintemp_f,
+    )}°`;
+  } else {
+    dayOneHigh.textContent = `H: ${Math.round(
+      data.forecast.forecastday[1].day.maxtemp_c,
+    )}°`;
+    dayOneLow.textContent = `L: ${Math.round(
+      data.forecast.forecastday[1].day.mintemp_c,
+    )}°`;
+  }
   dayOneIcon.setAttribute(
     "src",
     data.forecast.forecastday[1].day.condition.icon,
@@ -125,12 +157,21 @@ const updateDom = (data) => {
   // Day two
 
   dayTwo.textContent = `${format(weekDayTwo, "EEEE")}`;
-  dayTwoHigh.textContent = `H: ${Math.round(
-    data.forecast.forecastday[2].day.maxtemp_f,
-  )}°`;
-  dayTwoLow.textContent = `L: ${Math.round(
-    data.forecast.forecastday[2].day.mintemp_f,
-  )}°`;
+  if (degreeType === "fahrenheit") {
+    dayTwoHigh.textContent = `H: ${Math.round(
+      data.forecast.forecastday[2].day.maxtemp_f,
+    )}°`;
+    dayTwoLow.textContent = `L: ${Math.round(
+      data.forecast.forecastday[2].day.mintemp_f,
+    )}°`;
+  } else {
+    dayTwoHigh.textContent = `H: ${Math.round(
+      data.forecast.forecastday[2].day.maxtemp_c,
+    )}°`;
+    dayTwoLow.textContent = `L: ${Math.round(
+      data.forecast.forecastday[2].day.mintemp_c,
+    )}°`;
+  }
   dayTwoIcon.setAttribute(
     "src",
     data.forecast.forecastday[2].day.condition.icon,
@@ -141,6 +182,27 @@ const updateDom = (data) => {
   );
   dayTwoCondition.textContent = data.forecast.forecastday[2].day.condition.text;
 };
+
+const setDegreeType = () => {
+  if (degreeType === "fahrenheit") {
+    degreeType = "celcius";
+    degreeBtn.textContent = "°F";
+  } else {
+    degreeType = "fahrenheit";
+    degreeBtn.textContent = "°C";
+  }
+
+  if (search.value !== "") {
+    getWeather(search.value)
+      .then((locationData) => updateDom(locationData))
+      .catch((err) => console.error(err));
+  } else {
+    getWeather().then((locationData) => updateDom(locationData));
+  }
+  console.log(degreeType);
+};
+
+degreeBtn.addEventListener("click", setDegreeType);
 
 getWeather().then((locationData) => updateDom(locationData));
 

@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body class="h-screen bg-gradient-to-b from-violet-700 to-violet-950 to-60%">
+
+  <body
+    class="flex min-h-screen flex-col bg-gradient-to-b from-violet-800 to-violet-950 to-60%"
+  >
     <script type="module" src="src/main.js"></script>
 
     <div class="mx-auto mb-14 w-fit pt-10">
@@ -19,7 +22,7 @@
       />
     </div>
 
-    <main class="flex flex-col p-5">
+    <main class="mb-10 flex flex-col p-5 md:mb-0">
       <div id="locationWrapper" class="mb-10 flex w-fit flex-col self-center">
         <h1 id="city" class="mb-1 self-center text-3xl text-white"></h1>
         <div id="date" class="mb-1 self-center text-white"></div>
@@ -53,7 +56,9 @@
           ></div>
         </div>
         <div class="flex flex-col">
-          <p class="mb-2 text-white">Precipitation: rain | snow</p>
+          <p class="mb-2 self-center text-center text-white">
+            Precipitation: rain | snow
+          </p>
           <div
             id="precipitation"
             class="self-center text-center text-white"
@@ -68,7 +73,9 @@
           <div id="humidity" class="self-center text-center text-white"></div>
         </div>
         <div class="flex flex-col">
-          <p class="mb-2 text-white">Precipitation Expected</p>
+          <p class="mb-2 self-center text-center text-white">
+            Precipitation Expected
+          </p>
           <div
             id="precipitationExpected"
             class="self-center text-center text-white"
@@ -88,5 +95,31 @@
         </div>
       </div>
     </main>
+
+    <section id="forecast" class="mb-12 mt-auto flex justify-center p-4">
+      <div id="dayOneWrapper" class="flex flex-col border-r pr-8 text-white">
+        <div id="dayOne" class="mb-1 self-center"></div>
+        <div class="flex self-center">
+          <div id="dayOneHigh" class="mr-4"></div>
+          <div id="dayOneLow" class=""></div>
+        </div>
+        <div class="flex items-center justify-center">
+          <img id="dayOneIcon" src="" alt="" class="mr-2 h-12" />
+          <div id="dayOneCondition" class="hidden md:block"></div>
+        </div>
+      </div>
+      <div id="dayTwoWrapper" class="flex flex-col pl-8 text-white">
+        <div id="dayTwo" class="mb-1 self-center"></div>
+        <div class="flex self-center">
+          <div id="dayTwoHigh" class="mr-4"></div>
+          <div id="dayTwoLow" class=""></div>
+        </div>
+        <div class="flex items-center justify-center">
+          <img id="dayTwoIcon" src="" alt="" class="mr-2 h-12" />
+          <div id="dayTwoCondition" class="hidden md:block"></div>
+        </div>
+      </div>
+    </section>
+
   </body>
 </html>

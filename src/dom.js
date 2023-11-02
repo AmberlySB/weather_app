@@ -40,7 +40,8 @@ const updateDom = (data) => {
   } else {
     city.textContent = `${data.location.name}, ${data.location.country}`;
   }
-  const thisDate = new Date(data.location.localtime);
+  const thisDate = new Date(data.location.localtime.replace(/-/g, "/"));
+  console.log(data.location.localtime.replace(/-/g, "/"));
   if (isDate(thisDate)) {
     date.textContent = `${format(thisDate, "EEEE MMMM d y | h:mm a")}`;
   }
